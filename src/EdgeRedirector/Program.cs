@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace EdgeRedirector
 {
@@ -19,7 +20,7 @@ namespace EdgeRedirector
 
         private static void Redirect(string url)
         {
-
+            Debug.WriteLine(url);
         }
     }
 }
