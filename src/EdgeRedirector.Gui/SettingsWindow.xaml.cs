@@ -1,4 +1,5 @@
 ﻿using EdgeRedirector.Core;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -64,6 +65,17 @@ namespace EdgeRedirector.Gui
             }
 
             ViewModel.SaveSettings();
+        }
+
+        private void BrowserOpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "Programs (*.exe;*.pif;*.com;*.bat;*.cmd)|*.exe;*.pif;*.com;*.bat;*.cmd|" +
+                         "All files (*.*)|*.*"
+            };
+            if (openFileDialog.ShowDialog() == true)
+                ViewModel.Browser = openFileDialog.FileName;
         }
     }
 }
