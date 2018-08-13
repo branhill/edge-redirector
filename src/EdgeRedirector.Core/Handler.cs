@@ -19,7 +19,9 @@ namespace EdgeRedirector.Core
             }
             catch (Exception e)
             {
-                return e.Message;
+                return $"{e.GetType().FullName}: {e.Message}{Environment.NewLine}" +
+                       $"{e.StackTrace}{Environment.NewLine}" +
+                       $"URI: {uri}";
             }
 
             return null;

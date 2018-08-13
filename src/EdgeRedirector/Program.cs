@@ -13,8 +13,12 @@ namespace EdgeRedirector
                 string uri = args[0];
                 Debug.WriteLine(uri);
                 string result = Core.Handler.Handle(uri);
-                if (!(result is null))
-                    Gui.EntryPoint.ShowMessageWindow($"{result}{Environment.NewLine}{Environment.NewLine}URI: {uri}");
+
+                if (result is null)
+                    return;
+                string message = result + Environment.NewLine + Environment.NewLine +
+                                 "Please report to https://github.com/branhill/edge-redirector/issues";
+                Gui.EntryPoint.ShowMessageWindow(message, "Error occurred");
             }
             else
             {

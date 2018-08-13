@@ -15,9 +15,9 @@ namespace EdgeRedirector.Gui
             Main(new SettingsWindow());
         }
 
-        public static void ShowMessageWindow(string message)
+        public static void ShowMessageWindow(string message, string title)
         {
-            MessageBox.Show(message, "Edge Redirector", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(message, $"{title} - Edge Redirector", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
