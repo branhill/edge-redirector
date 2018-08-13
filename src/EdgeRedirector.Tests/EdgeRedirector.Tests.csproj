@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EdgeRedirector\EdgeRedirector.csproj" />
+    <ProjectReference Include="..\EdgeRedirector.Core\EdgeRedirector.Core.csproj" />
   </ItemGroup>
 
 </Project>
