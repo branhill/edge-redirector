@@ -25,6 +25,9 @@ namespace EdgeRedirector.Core
 
         public void Save(string path)
         {
+            string parentDirectory = Directory.GetParent(path).FullName;
+            Directory.CreateDirectory(parentDirectory);
+
             using (var streamWriter = new StreamWriter(path))
             using (var jsonTextWriter = new JsonTextWriter(streamWriter))
             {

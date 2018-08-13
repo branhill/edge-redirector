@@ -16,5 +16,16 @@ namespace EdgeRedirector.Tests
 
             Assert.Equal(result, expected);
         }
+
+        [Theory]
+        [InlineData("https://go.microsoft.com/fwlink/?LinkId=528884", "", "https://go.microsoft.com/fwlink/?LinkId=528884")]
+        [InlineData("https://go.microsoft.com/fwlink/?LinkId=528884", "https://example.com/search?q=%s", "https://go.microsoft.com/fwlink/?LinkId=528884")]
+        [InlineData("https://www.bing.com/search?q=the+search+test&form=WNSGPH&qs=SW&cvid=00000000000000000000000000000000&pq=the+search+test&cc=US&setlang=en-US&nclid=00000000000000000000000000000000&ts=0000000000000&nclidts=0000000000&tsms=000", "https://example.com/search?q=%s", "https://example.com/search?q=the+search+test")]
+        public void GetRedirectedUrlTest(string originalUrl, string searchEngine, string expected)
+        {
+            string result = Program.GetRedirectedUrl(originalUrl, searchEngine);
+
+            Assert.Equal(result, expected);
+        }
     }
 }
