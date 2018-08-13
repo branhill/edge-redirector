@@ -9,7 +9,8 @@
         SizeToContent="WidthAndHeight"
         ResizeMode="CanMinimize"
         DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
