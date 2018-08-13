@@ -1,12 +1,10 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace EdgeRedirector.Gui
 {
     public class EntryPoint
     {
-        [STAThread]
-        public static void Main(Window window = null)
+        private static void Main(Window window)
         {
             var app = new Application();
             app.Run(window);
@@ -17,10 +15,9 @@ namespace EdgeRedirector.Gui
             Main(new SettingsWindow());
         }
 
-        public static void ShowMessageWindow(string message, string uri = null)
+        public static void ShowMessageWindow(string message)
         {
-            MessageBox.Show(message + Environment.NewLine + uri, "Edge Redirector", MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            MessageBox.Show(message, "Edge Redirector", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

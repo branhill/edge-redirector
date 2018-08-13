@@ -14,7 +14,7 @@ namespace EdgeRedirector
                 Debug.WriteLine(uri);
                 string result = Core.Handler.Handle(uri);
                 if (!(result is null))
-                    Gui.EntryPoint.ShowMessageWindow(result, uri);
+                    Gui.EntryPoint.ShowMessageWindow($"{result}{Environment.NewLine}{Environment.NewLine}URI: {uri}");
             }
             else
             {
