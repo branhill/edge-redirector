@@ -79,5 +79,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EdgeRedirector.Core\EdgeRedirector.Core.csproj">
+      <Project>{b1611447-1ff9-4958-923a-2da016f0f908}</Project>
+      <Name>EdgeRedirector.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,7 +12,7 @@ namespace EdgeRedirector
         {
             if (args.Length == 1)
             {
-                string result = Process(args[0]);
+                string result = Handle(args[0]);
                 if (result != string.Empty)
                     Gui.EntryPoint.ShowMessageWindow(result);
             }
@@ -22,13 +22,14 @@ namespace EdgeRedirector
             }
         }
 
-        public static string Process(string arg)
+        public static string Handle(string arg)
         {
             Debug.WriteLine(arg);
 
             try
             {
                 string url = GetUrl(arg);
+                Process.Start(url);
             }
             catch (Exception e)
             {
