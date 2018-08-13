@@ -9,8 +9,6 @@ namespace EdgeRedirector.Core
     {
         public static string Handle(string uri)
         {
-            Debug.WriteLine(uri);
-
             try
             {
                 Settings settings = Settings.Open();
@@ -24,7 +22,7 @@ namespace EdgeRedirector.Core
                 return e.Message;
             }
 
-            return string.Empty;
+            return null;
         }
 
         public static string GetOriginalUrl(string uriString)
@@ -55,9 +53,9 @@ namespace EdgeRedirector.Core
             var uri = new Uri(originalUrl);
             NameValueCollection query = HttpUtility.ParseQueryString(uri.Query);
             string searchQuery = query["q"];
-            if (searchQuery is null)
-                return originalUrl;
-            return searchEngine.Replace("%s", HttpUtility.UrlEncode(searchQuery));
+            return searchQuery is null
+                ? originalUrl
+                : searchEngine.Replace("%s", HttpUtility.UrlEncode(searchQuery));
         }
 
         public static void StartBrowser(string url, string browser = null)

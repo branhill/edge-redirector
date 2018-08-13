@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace EdgeRedirector
 {
@@ -10,9 +11,10 @@ namespace EdgeRedirector
             if (args.Length == 1)
             {
                 string uri = args[0];
+                Debug.WriteLine(uri);
                 string result = Core.Handler.Handle(uri);
-                if (result != string.Empty)
-                    Gui.EntryPoint.ShowMessageWindow(result);
+                if (!(result is null))
+                    Gui.EntryPoint.ShowMessageWindow(result, uri);
             }
             else
             {
