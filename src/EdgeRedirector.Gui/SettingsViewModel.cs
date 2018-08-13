@@ -72,8 +72,8 @@ namespace EdgeRedirector.Gui
 
         public void SaveSettings()
         {
-            _settings.Save();
             _lazySaveTimer.Stop();
+            _settings.Save();
         }
 
         private void LazySaveSettings()

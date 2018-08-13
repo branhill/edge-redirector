@@ -36,7 +36,7 @@
   <PropertyGroup>
     <ProjectGuid>d3b3b608-bff9-46bf-9a8f-bd99b4342632</ProjectGuid>
     <TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>EdgeRedirector.Package_TemporaryKey.pfx</PackageCertificateKeyFile>
     <EntryPointProjectUniqueName>..\EdgeRedirector\EdgeRedirector.csproj</EntryPointProjectUniqueName>
