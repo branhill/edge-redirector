@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EdgeRedirector")]
+[assembly: AssemblyTitle("Edge Redirector")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EdgeRedirector")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyProduct("Edge Redirector")]
+[assembly: AssemblyCopyright("Copyright © 2018 Brandon Hill")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

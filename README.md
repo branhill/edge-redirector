@@ -4,7 +4,7 @@ In Windows 10, Cortana search result and some help links are forced to use Micro
 
 ## Screenshots
 
-<img alt="Screenshot of settings" src="docs\images\screenshot-settings.png" width="513">
+<img alt="Screenshot of settings" src="assets\screenshot-settings.png" width="513">
 
 ## Build
 
