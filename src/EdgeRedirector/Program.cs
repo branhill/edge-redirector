@@ -1,7 +1,9 @@
 ﻿namespace EdgeRedirector
 {
-    public static class Program
+    class Program
     {
-        public static void Main(string[] args) { }
+        static void Main(string[] args)
+        {
+        }
     }
 }
