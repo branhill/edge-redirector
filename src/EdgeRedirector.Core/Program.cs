@@ -17,7 +17,7 @@ namespace EdgeRedirector.Core
                     return;
                 string message = result + Environment.NewLine + Environment.NewLine +
                                  "Please report to https://github.com/branhill/edge-redirector/issues";
-                Process.Start("EdgeRedirector.Gui.exe");
+                Process.Start("EdgeRedirector.Gui.exe", $"message {Uri.EscapeDataString(message)}");
             }
             else
             {

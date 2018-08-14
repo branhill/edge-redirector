@@ -10,7 +10,8 @@ namespace EdgeRedirector.Gui
         {
             if (args.Length == 2 && string.Equals(args[0], "message", StringComparison.OrdinalIgnoreCase))
             {
-                MessageBox.Show(args[1], "Edge Redirector", MessageBoxButton.OK, MessageBoxImage.Information);
+                string message = Uri.UnescapeDataString(args[1]);
+                MessageBox.Show(message, "Edge Redirector", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
