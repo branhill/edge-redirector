@@ -1,16 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 
 namespace EdgeRedirector.Core
 {
     public class Settings
     {
-        private static readonly JsonSerializer JsonSerializer = new JsonSerializer { Formatting = Formatting.Indented };
-
         private static readonly string DefaultPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "EdgeRedirector", "Settings.json");
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EdgeRedirector", "Settings");
 
         public string Browser { get; set; }
 
@@ -21,14 +17,16 @@ namespace EdgeRedirector.Core
             if (path is null)
                 path = DefaultPath;
 
+            var settings = new Settings();
             if (!File.Exists(path))
-                return new Settings();
+                return settings;
 
-            using (var streamReader = new StreamReader(path))
-            using (var jsonTextReader = new JsonTextReader(streamReader))
-            {
-                return JsonSerializer.Deserialize<Settings>(jsonTextReader);
-            }
+            string[] lines = File.ReadAllLines(path);
+            if (lines.Length > 0)
+                settings.Browser = lines[0];
+            if (lines.Length > 1)
+                settings.SearchEngine = lines[1];
+            return settings;
         }
 
         public void Save(string path = null)
@@ -39,11 +37,12 @@ namespace EdgeRedirector.Core
             string parentDirectory = Directory.GetParent(path).FullName;
             Directory.CreateDirectory(parentDirectory);
 
-            using (var streamWriter = new StreamWriter(path))
-            using (var jsonTextWriter = new JsonTextWriter(streamWriter))
+            string[] lines =
             {
-                JsonSerializer.Serialize(jsonTextWriter, this);
-            }
+                Browser,
+                SearchEngine
+            };
+            File.WriteAllLines(path, lines);
         }
     }
 }
