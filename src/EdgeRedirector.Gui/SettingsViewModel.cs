@@ -1,5 +1,5 @@
-﻿using EdgeRedirector.Core;
-using EdgeRedirector.Gui.Helpers;
+﻿using EdgeRedirector.Gui.Helpers;
+using EdgeRedirector.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;

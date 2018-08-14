@@ -14,4 +14,6 @@
     <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-26814-01" />
   </ItemGroup>
 
+  <Import Project="..\EdgeRedirector.Shared\EdgeRedirector.Shared.projitems" Label="Shared" />
+
 </Project>

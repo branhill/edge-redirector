@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace EdgeRedirector.Core
+namespace EdgeRedirector.Shared
 {
     public class Settings
     {

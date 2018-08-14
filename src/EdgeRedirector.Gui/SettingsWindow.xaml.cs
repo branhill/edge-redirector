@@ -1,4 +1,4 @@
-﻿using EdgeRedirector.Core;
+﻿using EdgeRedirector.Shared;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using System.ComponentModel;
