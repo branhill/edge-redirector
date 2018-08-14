@@ -61,7 +61,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>dotnet publish "$(ProjectDir)..\EdgeRedirector.Core" -r win-x64 -c Release -o "$(TargetDir)"
+    <PostBuildEvent>dotnet publish "$(ProjectDir)..\EdgeRedirector.Core" -c $(ConfigurationName) -o "$(TargetDir)"
 del "$(TargetDir)*.json"
 call "$(DevEnvDir)..\Tools\VsDevCmd.bat"
 editbin /subsystem:windows "$(TargetPath)"</PostBuildEvent>
