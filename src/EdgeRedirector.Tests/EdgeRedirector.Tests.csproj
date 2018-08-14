@@ -12,8 +12,4 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\EdgeRedirector.Core\EdgeRedirector.Core.csproj" />
-  </ItemGroup>
-
 </Project>
