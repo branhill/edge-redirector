@@ -15,11 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A51DD2FC-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeRedirector.Tests", "src\EdgeRedirector.Tests\EdgeRedirector.Tests.csproj", "{FE8A56A1-4550-4ED8-A646-97539EF6F0F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeRedirector.Core", "src\EdgeRedirector.Core\EdgeRedirector.Core.csproj", "{7053FF6F-869B-4C48-BF1B-01C5979E7814}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeRedirector.Core", "src\EdgeRedirector.Core\EdgeRedirector.Core.csproj", "{7053FF6F-869B-4C48-BF1B-01C5979E7814}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3B27ED8-85DB-435D-85D2-E06CE411A6DA}"
 	ProjectSection(SolutionItems) = preProject
-		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
 EndProject
