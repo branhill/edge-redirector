@@ -1,7 +1,9 @@
 ﻿using EdgeRedirector.Shared;
+using Microsoft.Win32;
 using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace EdgeRedirector.Core
@@ -61,20 +63,33 @@ namespace EdgeRedirector.Core
                 : searchEngine.Replace("%s", HttpUtility.UrlEncode(searchQuery));
         }
 
+        public static string GetDefaultBrowser()
+        {
+            if (Registry.GetValue(
+                @"HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\https\UserChoice",
+                "ProgId", null) is string progId)
+            {
+                if (Registry.GetValue($@"HKEY_CLASSES_ROOT\{progId}\shell\open\command", null, null) is string command)
+                {
+                    Match match = Regex.Match(command, "\"(.*?)\"");
+                    if (match.Success)
+                        return match.Groups[1].Value;
+
+                    int exeIndex = command.LastIndexOf(".exe", StringComparison.OrdinalIgnoreCase);
+                    if (exeIndex != -1)
+                        return command.Substring(0, exeIndex + 4);
+                }
+            }
+
+            throw new Exception("Unable to get the system default browser. Please configure it in the settings.");
+        }
+
         public static void StartBrowser(string url, string browser = null)
         {
             if (string.IsNullOrWhiteSpace(browser))
-            {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = url,
-                    UseShellExecute = true
-                });
-            }
-            else
-            {
-                Process.Start(browser, url);
-            }
+                browser = GetDefaultBrowser();
+
+            Process.Start(browser, url);
         }
     }
 }
