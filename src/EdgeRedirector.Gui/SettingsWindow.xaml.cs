@@ -1,12 +1,12 @@
 ﻿using EdgeRedirector.Shared;
 using Microsoft.Win32;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace EdgeRedirector.Gui
 {
@@ -15,24 +15,16 @@ namespace EdgeRedirector.Gui
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        private readonly Dictionary<string, RadioButton> _searchEngineRadioButtons;
-
         public SettingsWindow()
         {
             ViewModel = new SettingsViewModel(Settings.Open());
 
             InitializeComponent();
-
-            _searchEngineRadioButtons = SearchEnginesStackPanel.Children
-                .OfType<RadioButton>()
-                .Where(r => !(r.Tag is null))
-                .ToDictionary(r => (string)r.Tag);
-            InitializeState();
         }
 
         public SettingsViewModel ViewModel { get; set; }
 
-        private void InitializeState()
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(ViewModel.Browser))
                 BrowserDefaultRadioButton.IsChecked = true;
@@ -40,19 +32,17 @@ namespace EdgeRedirector.Gui
                 BrowserCustomRadioButton.IsChecked = true;
 
             if (ViewModel.SelectedSearchEngine is null)
+            {
                 SearchEngineCustomRadioButton.IsChecked = true;
+            }
             else
-                _searchEngineRadioButtons[ViewModel.SelectedSearchEngine].IsChecked = true;
-        }
-
-        private void BrowserDefaultRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            ViewModel.Browser = string.Empty;
-        }
-
-        private void SearchEngineRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            ViewModel.SelectedSearchEngine = ((RadioButton)sender).Tag as string;
+            {
+                SearchEnginesItemsControl.Items.Cast<object>()
+                    .Select(i => SearchEnginesItemsControl.ItemContainerGenerator.ContainerFromItem(i))
+                    .Select(c => (RadioButton)VisualTreeHelper.GetChild(c, 0))
+                    .Single(r => (string)r.Tag == ViewModel.SelectedSearchEngine)
+                    .IsChecked = true;
+            }
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -65,6 +55,16 @@ namespace EdgeRedirector.Gui
             }
 
             ViewModel.SaveSettings();
+        }
+
+        private void BrowserDefaultRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Browser = string.Empty;
+        }
+
+        private void SearchEngineRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SelectedSearchEngine = ((RadioButton)sender).Tag as string;
         }
 
         private void BrowserOpenButton_Click(object sender, RoutedEventArgs e)

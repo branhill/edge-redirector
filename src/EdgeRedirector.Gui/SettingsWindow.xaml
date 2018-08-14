@@ -8,9 +8,10 @@
         Title="Edge Redirector Settings"
         SizeToContent="WidthAndHeight"
         ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
         DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
-        Closing="Window_Closing"
-        WindowStartupLocation="CenterScreen">
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -55,21 +56,21 @@
         <GroupBox Header="Search Engine"
                   Grid.Row="1"
                   Margin="10,0,10,10">
-            <StackPanel x:Name="SearchEnginesStackPanel">
-                <RadioButton Content="Default (Bing)"
-                             Tag="0"
-                             Checked="SearchEngineRadioButton_Checked" />
-                <RadioButton Content="Google"
-                             Tag="1"
-                             Checked="SearchEngineRadioButton_Checked" />
-                <RadioButton Content="Yahoo!"
-                             Tag="2"
-                             Checked="SearchEngineRadioButton_Checked" />
-                <RadioButton Content="DuckDuckGo"
-                             Tag="3"
-                             Checked="SearchEngineRadioButton_Checked" />
+            <StackPanel>
+                <ItemsControl x:Name="SearchEnginesItemsControl"
+                              ItemsSource="{Binding SearchEngines}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="{Binding Key}"
+                                         Tag="{Binding Key}"
+                                         GroupName="SearchEngines"
+                                         Checked="SearchEngineRadioButton_Checked" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <RadioButton x:Name="SearchEngineCustomRadioButton"
                              Content="Custom (%s in place of query)"
+                             GroupName="SearchEngines"
                              Checked="SearchEngineRadioButton_Checked" />
                 <DockPanel Margin="0,0,0,5"
                            IsEnabled="{Binding IsChecked, ElementName=SearchEngineCustomRadioButton}">

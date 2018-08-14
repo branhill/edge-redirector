@@ -22,7 +22,7 @@ namespace EdgeRedirector.Gui
 
             if (string.IsNullOrWhiteSpace(_settings.SearchEngine))
             {
-                _selectedSearchEngine = "0";
+                _selectedSearchEngine = SearchEngines.First().Key;
             }
             else
             {
@@ -64,10 +64,10 @@ namespace EdgeRedirector.Gui
 
         public Dictionary<string, string> SearchEngines { get; } = new Dictionary<string, string>
         {
-            { "0", "" },
-            { "1", "https://www.google.com/search?q=%s" },
-            { "2", "https://search.yahoo.com/search?p=%s" },
-            { "3", "https://duckduckgo.com/?q=%s" }
+            { "Default (Bing)", "" },
+            { "Google", "https://www.google.com/search?q=%s" },
+            { "Yahoo!", "https://search.yahoo.com/search?p=%s" },
+            { "DuckDuckGo", "https://duckduckgo.com/?q=%s" }
         };
 
         public void SaveSettings()
