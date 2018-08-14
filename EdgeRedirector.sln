@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F929D3E0-CC2D-46A9-A6A2-23EA81534939}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeRedirector", "src\EdgeRedirector\EdgeRedirector.csproj", "{C34AC47F-2165-42C1-925B-2AD20898EF8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeRedirector", "src\EdgeRedirector\EdgeRedirector.csproj", "{C34AC47F-2165-42C1-925B-2AD20898EF8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeRedirector.Gui", "src\EdgeRedirector.Gui\EdgeRedirector.Gui.csproj", "{F7F76D4E-4CCA-4882-9126-A5E67EEE3A9D}"
 EndProject
@@ -19,6 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeRedirector.Core", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3B27ED8-85DB-435D-85D2-E06CE411A6DA}"
 	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
 EndProject
