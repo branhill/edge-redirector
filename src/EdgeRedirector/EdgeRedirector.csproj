@@ -54,13 +54,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EdgeRedirector.Gui\EdgeRedirector.Gui.csproj">
       <Project>{f7f76d4e-4cca-4882-9126-a5e67eee3a9d}</Project>
       <Name>EdgeRedirector.Gui</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>dotnet publish "$(ProjectDir)..\EdgeRedirector.Core" -r win-x64 -c Release -o "$(TargetDir)"
+del "$(TargetDir)*.json"
+call "$(DevEnvDir)..\Tools\VsDevCmd.bat"
+editbin /subsystem:windows "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
