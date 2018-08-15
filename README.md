@@ -1,5 +1,7 @@
 # Edge Redirector
 
+[![Build status](https://ci.appveyor.com/api/projects/status/0smjkpvggb9jpvjv?svg=true)](https://ci.appveyor.com/project/BrandonHill/edge-redirector)
+
 In Windows 10, Cortana search result and some help links are forced to use Microsoft Edge to open. This app will associate `microsoft-edge` protocol that you can use system default browser or any browser to open the links. In addition, it can redirect Bing search to other search engines without browser extension required.
 
 This app optimized for minimum startup time by using AOT compiler (CoreRT) to generate native code.
