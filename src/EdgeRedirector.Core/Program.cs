@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace EdgeRedirector.Core
 {
@@ -19,11 +20,13 @@ namespace EdgeRedirector.Core
                     return;
                 string message = result + Environment.NewLine + Environment.NewLine +
                                  "Please report to https://github.com/branhill/edge-redirector/issues";
-                Process.Start(GuiFileName, $"message {Uri.EscapeDataString(message)}");
+                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, GuiFileName)))
+                    Process.Start(GuiFileName, $"message {Uri.EscapeDataString(message)}");
             }
             else
             {
-                Process.Start(GuiFileName);
+                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, GuiFileName)))
+                    Process.Start(GuiFileName);
             }
         }
     }
