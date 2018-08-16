@@ -1,8 +1,6 @@
 ﻿using EdgeRedirector.Gui.Helpers;
 using EdgeRedirector.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Threading;
 
 namespace EdgeRedirector.Gui
@@ -11,7 +9,6 @@ namespace EdgeRedirector.Gui
     {
         private readonly Settings _settings;
         private readonly DispatcherTimer _lazySaveTimer;
-        private string _selectedSearchEngine;
 
         public SettingsViewModel(Settings settings)
         {
@@ -19,16 +16,6 @@ namespace EdgeRedirector.Gui
 
             _lazySaveTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1000) };
             _lazySaveTimer.Tick += (s, e) => { SaveSettings(); };
-
-            if (string.IsNullOrWhiteSpace(_settings.SearchEngine))
-            {
-                _selectedSearchEngine = SearchEngines.First().Key;
-            }
-            else
-            {
-                _selectedSearchEngine = SearchEngines.SingleOrDefault(s =>
-                    string.Equals(s.Value, _settings.SearchEngine, StringComparison.OrdinalIgnoreCase)).Key;
-            }
         }
 
         public string Browser
@@ -50,25 +37,6 @@ namespace EdgeRedirector.Gui
                 LazySaveSettings();
             }
         }
-
-        public string SelectedSearchEngine
-        {
-            get => _selectedSearchEngine;
-            set
-            {
-                Set(ref _selectedSearchEngine, value);
-                if (!(value is null))
-                    SearchEngine = SearchEngines[value];
-            }
-        }
-
-        public Dictionary<string, string> SearchEngines { get; } = new Dictionary<string, string>
-        {
-            { "Default (Bing)", "" },
-            { "Google", "https://www.google.com/search?q=%s" },
-            { "Yahoo!", "https://search.yahoo.com/search?p=%s" },
-            { "DuckDuckGo", "https://duckduckgo.com/?q=%s" }
-        };
 
         public void SaveSettings()
         {

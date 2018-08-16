@@ -56,21 +56,21 @@
         <GroupBox Header="Search Engine"
                   Grid.Row="1"
                   Margin="10,0,10,10">
-            <StackPanel>
-                <ItemsControl x:Name="SearchEnginesItemsControl"
-                              ItemsSource="{Binding SearchEngines}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <RadioButton Content="{Binding Key}"
-                                         Tag="{Binding Key}"
-                                         GroupName="SearchEngines"
-                                         Checked="SearchEngineRadioButton_Checked" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+            <StackPanel x:Name="SearchEngineStackPanel">
+                <RadioButton Content="Default (Bing)"
+                             Tag=""
+                             Checked="SearchEngineRadioButton_Checked" />
+                <RadioButton Content="Google"
+                             Tag="https://www.google.com/search?q=%s"
+                             Checked="SearchEngineRadioButton_Checked" />
+                <RadioButton Content="Yahoo!"
+                             Tag="https://search.yahoo.com/search?p=%s"
+                             Checked="SearchEngineRadioButton_Checked" />
+                <RadioButton Content="DuckDuckGo"
+                             Tag="https://duckduckgo.com/?q=%s"
+                             Checked="SearchEngineRadioButton_Checked" />
                 <RadioButton x:Name="SearchEngineCustomRadioButton"
                              Content="Custom (%s in place of query)"
-                             GroupName="SearchEngines"
                              Checked="SearchEngineRadioButton_Checked" />
                 <DockPanel Margin="0,0,0,5"
                            IsEnabled="{Binding IsChecked, ElementName=SearchEngineCustomRadioButton}">

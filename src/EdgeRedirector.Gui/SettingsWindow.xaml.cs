@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace EdgeRedirector.Gui
 {
@@ -31,18 +30,11 @@ namespace EdgeRedirector.Gui
             else
                 BrowserCustomRadioButton.IsChecked = true;
 
-            if (ViewModel.SelectedSearchEngine is null)
-            {
-                SearchEngineCustomRadioButton.IsChecked = true;
-            }
-            else
-            {
-                SearchEnginesItemsControl.Items.Cast<object>()
-                    .Select(i => SearchEnginesItemsControl.ItemContainerGenerator.ContainerFromItem(i))
-                    .Select(c => (RadioButton)VisualTreeHelper.GetChild(c, 0))
-                    .Single(r => (string)r.Tag == ViewModel.SelectedSearchEngine)
-                    .IsChecked = true;
-            }
+            if (string.IsNullOrWhiteSpace(ViewModel.SearchEngine))
+                ViewModel.SearchEngine = string.Empty;
+            RadioButton selectedSearch = SearchEngineStackPanel.Children.OfType<RadioButton>()
+                .SingleOrDefault(r => (string)r.Tag == ViewModel.SearchEngine) ?? SearchEngineCustomRadioButton;
+            selectedSearch.IsChecked = true;
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -64,7 +56,8 @@ namespace EdgeRedirector.Gui
 
         private void SearchEngineRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            ViewModel.SelectedSearchEngine = ((RadioButton)sender).Tag as string;
+            if (((RadioButton)sender).Tag is string url)
+                ViewModel.SearchEngine = url;
         }
 
         private void BrowserOpenButton_Click(object sender, RoutedEventArgs e)
