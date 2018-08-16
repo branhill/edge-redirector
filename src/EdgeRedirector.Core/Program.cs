@@ -5,7 +5,7 @@ namespace EdgeRedirector.Core
 {
     public class Program
     {
-        private const string GuiFileName = "EdgeRedirector.Gui.exe";
+        private const string GuiFileName = "EdgeRedirector.UI.exe";
 
         public static void Main(string[] args)
         {

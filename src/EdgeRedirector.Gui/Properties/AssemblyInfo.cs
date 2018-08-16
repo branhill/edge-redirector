@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Edge Redirector GUI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Edge Redirector UI")]
+[assembly: AssemblyDescription("Edge Redirector UI")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Edge Redirector GUI")]
+[assembly: AssemblyCompany("Brandon Hill")]
+[assembly: AssemblyProduct("Edge Redirector")]
 [assembly: AssemblyCopyright("Copyright © 2018 Brandon Hill")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
