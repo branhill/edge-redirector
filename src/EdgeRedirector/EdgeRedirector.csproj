@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet publish &quot;$(ProjectDir)..\EdgeRedirector.Core&quot; -r win-x64 -c $(ConfigurationName) -o &quot;$(TargetDir)&quot;&#xD;&#xA;del &quot;$(TargetDir)*.json&quot;&#xD;&#xA;call &quot;$(DevEnvDir)..\Tools\VsDevCmd.bat&quot;&#xD;&#xA;editbin /subsystem:windows &quot;$(TargetPath)&quot;" />
+    <Exec Command="dotnet publish &quot;$(ProjectDir)..\EdgeRedirector.Core&quot; -r win-x64 -c $(ConfigurationName) -o &quot;$(TargetDir)&quot;&#xD;&#xA;del &quot;$(TargetDir)*.json&quot;" />
   </Target>
 
   <ItemGroup>
