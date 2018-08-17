@@ -5,11 +5,17 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <AssemblyName>EdgeRedirector</AssemblyName>
+    <AssemblyTitle>Edge Redirector</AssemblyTitle>
+    <Company>Brandon Hill</Company>
+    <Product>Edge Redirector</Product>
+    <Description>Edge Redirector</Description>
+    <Copyright>Copyright © 2018 Brandon Hill</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
