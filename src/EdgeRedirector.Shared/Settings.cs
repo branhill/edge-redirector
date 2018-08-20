@@ -5,19 +5,26 @@ namespace EdgeRedirector.Shared
 {
     public class Settings
     {
-        private static readonly string DefaultPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EdgeRedirector", "Settings");
+        private const string FileName = "Settings";
+        private string _storagePath;
 
-        public string Browser { get; set; }
+        public Settings() { }
 
-        public string SearchEngine { get; set; }
-
-        public static Settings Open(string path = null)
+        public Settings(string storagePath)
         {
-            if (path is null)
-                path = DefaultPath;
+            _storagePath = storagePath;
+        }
 
-            var settings = new Settings();
+        public string Browser { get; set; } = string.Empty;
+
+        public string SearchEngine { get; set; } = string.Empty;
+
+        public string StoragePath => _storagePath ?? (_storagePath = GetStoragePath());
+
+        public static Settings Open()
+        {
+            string path = GetStoragePath();
+            var settings = new Settings(path);
             if (!File.Exists(path))
                 return settings;
 
@@ -29,12 +36,9 @@ namespace EdgeRedirector.Shared
             return settings;
         }
 
-        public void Save(string path = null)
+        public void Save()
         {
-            if (path is null)
-                path = DefaultPath;
-
-            string parentDirectory = Directory.GetParent(path).FullName;
+            string parentDirectory = Directory.GetParent(StoragePath).FullName;
             Directory.CreateDirectory(parentDirectory);
 
             string[] lines =
@@ -42,7 +46,31 @@ namespace EdgeRedirector.Shared
                 Browser,
                 SearchEngine
             };
-            File.WriteAllLines(path, lines);
+            File.WriteAllLines(StoragePath, lines);
+        }
+
+        private static string GetStoragePath()
+        {
+            string portablePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileName);
+            if (File.Exists(portablePath))
+                return portablePath;
+
+            string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "EdgeRedirector", FileName);
+            if (File.Exists(appDataPath))
+                return appDataPath;
+
+            try
+            {
+                using (File.Create(portablePath))
+                {
+                    return portablePath;
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return appDataPath;
+            }
         }
     }
 }

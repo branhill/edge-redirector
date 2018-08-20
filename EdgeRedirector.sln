@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F929D3E0-CC2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeRedirector", "src\EdgeRedirector\EdgeRedirector.csproj", "{C34AC47F-2165-42C1-925B-2AD20898EF8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeRedirector.Gui", "src\EdgeRedirector.Gui\EdgeRedirector.Gui.csproj", "{F7F76D4E-4CCA-4882-9126-A5E67EEE3A9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeRedirector.Gui", "src\EdgeRedirector.Gui\EdgeRedirector.Gui.csproj", "{F7F76D4E-4CCA-4882-9126-A5E67EEE3A9D}"
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "EdgeRedirector.Package", "src\EdgeRedirector.Package\EdgeRedirector.Package.wapproj", "{D3B3B608-BFF9-46BF-9A8F-BD99B4342632}"
 EndProject

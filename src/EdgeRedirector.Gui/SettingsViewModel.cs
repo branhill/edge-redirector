@@ -1,6 +1,7 @@
 ﻿using EdgeRedirector.Gui.Helpers;
 using EdgeRedirector.Shared;
 using System;
+using System.ComponentModel;
 using System.Windows.Threading;
 
 namespace EdgeRedirector.Gui
@@ -16,27 +17,23 @@ namespace EdgeRedirector.Gui
 
             _lazySaveTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1000) };
             _lazySaveTimer.Tick += (s, e) => { SaveSettings(); };
+
+            PropertyChanged += SettingsViewModel_PropertyChanged;
         }
 
         public string Browser
         {
             get => _settings.Browser;
-            set
-            {
-                Set(_settings.Browser, value, () => _settings.Browser = value);
-                LazySaveSettings();
-            }
+            set => Set(_settings.Browser, value, () => _settings.Browser = value);
         }
 
         public string SearchEngine
         {
             get => _settings.SearchEngine;
-            set
-            {
-                Set(_settings.SearchEngine, value, () => _settings.SearchEngine = value);
-                LazySaveSettings();
-            }
+            set => Set(_settings.SearchEngine, value, () => _settings.SearchEngine = value);
         }
+
+        public string StoragePath => _settings.StoragePath;
 
         public void SaveSettings()
         {
@@ -48,6 +45,11 @@ namespace EdgeRedirector.Gui
         {
             _lazySaveTimer.Stop();
             _lazySaveTimer.Start();
+        }
+
+        private void SettingsViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            LazySaveSettings();
         }
     }
 }
