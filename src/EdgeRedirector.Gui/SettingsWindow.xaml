@@ -12,8 +12,13 @@
         DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -80,5 +85,42 @@
                 </DockPanel>
             </StackPanel>
         </GroupBox>
+        <DockPanel Grid.Row="2"
+                   Margin="5,0,5,10">
+            <DockPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin"
+                            Value="5,0" />
+                    <Setter Property="Padding"
+                            Value="16,6" />
+                </Style>
+            </DockPanel.Resources>
+            <Button Command="{Binding InstallCommand}"
+                    Visibility="{Binding IsNotInAppContainer, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="5,0"
+                    Padding="16,6"
+                    MinWidth="80">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsInstalled}"
+                                         Value="True">
+                                <Setter Property="Content"
+                                        Value="Uninstall" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsInstalled}"
+                                         Value="False">
+                                <Setter Property="Content"
+                                        Value="Install" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Associate" />
+            <Button Content="About"
+                    DockPanel.Dock="Right" />
+            <Label />
+        </DockPanel>
     </Grid>
 </Window>

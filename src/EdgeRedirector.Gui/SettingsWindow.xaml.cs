@@ -21,7 +21,7 @@ namespace EdgeRedirector.Gui
             InitializeComponent();
         }
 
-        public SettingsViewModel ViewModel { get; set; }
+        public SettingsViewModel ViewModel { get; }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

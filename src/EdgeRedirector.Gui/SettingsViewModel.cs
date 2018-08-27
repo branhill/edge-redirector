@@ -11,12 +11,19 @@ namespace EdgeRedirector.Gui
         private readonly Settings _settings;
         private readonly DispatcherTimer _lazySaveTimer;
 
+        private bool _isInstalled;
+        private RelayCommand _installCommand;
+        private bool _installCommandCanExecute = true;
+
         public SettingsViewModel(Settings settings)
         {
             _settings = settings;
+            IsInAppContainer = PlatformDetection.IsInAppContainer();
+            if (!IsInAppContainer)
+                CheckIsInstalled();
 
             _lazySaveTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1000) };
-            _lazySaveTimer.Tick += (s, e) => { SaveSettings(); };
+            _lazySaveTimer.Tick += (s, e) => SaveSettings();
 
             PropertyChanged += SettingsViewModel_PropertyChanged;
         }
@@ -35,6 +42,36 @@ namespace EdgeRedirector.Gui
 
         public string StoragePath => _settings.StoragePath;
 
+        public bool IsInAppContainer { get; }
+
+        public bool IsNotInAppContainer => !IsInAppContainer;
+
+        public bool IsInstalled
+        {
+            get => _isInstalled;
+            set => Set(ref _isInstalled, value);
+        }
+
+        public RelayCommand InstallCommand => _installCommand ?? (_installCommand = new RelayCommand(
+            () =>
+            {
+                _installCommandCanExecute = false;
+                _installCommand.OnCanExecuteChanged();
+
+                if (IsInstalled)
+                {
+                }
+                else
+                {
+                }
+
+                IsInstalled = !IsInstalled;
+
+                _installCommandCanExecute = true;
+                _installCommand.OnCanExecuteChanged();
+            },
+            () => _installCommandCanExecute));
+
         public void SaveSettings()
         {
             _lazySaveTimer.Stop();
@@ -47,9 +84,20 @@ namespace EdgeRedirector.Gui
             _lazySaveTimer.Start();
         }
 
+        private void CheckIsInstalled()
+        {
+
+        }
+
         private void SettingsViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            LazySaveSettings();
+            switch (e.PropertyName)
+            {
+                case nameof(Browser):
+                case nameof(SearchEngine):
+                    LazySaveSettings();
+                    break;
+            }
         }
     }
 }
